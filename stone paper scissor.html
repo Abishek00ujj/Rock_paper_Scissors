@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="blood.png"/>
+    <title>Stone Paper Scissor-GAME</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .StoneContainer {
+            position: relative;
+        }
+        .Stoneimg {
+            border: 5px solid white;
+            padding: 10px;
+            z-index: 1;
+        }
+        .Stoneimg1 {
+            border: 5px solid white;
+            padding: 10px;
+            z-index: 1;
+        }
+        .label {
+            position: absolute;
+            bottom: 10;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            z-index: 2;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 999;
+        }
+        .popup input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .popup button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup" id="popup">
+        <h3>Enter Your Name:</h3>
+        <input type="text" id="playerName" placeholder="Your Name">
+        <button onclick="startGame()">Start Game</button>
+    </div>
+    <center>
+        <h3>Stone Paper Scissor-GAME</h3>
+    </center>
+    <div class="container">
+        <div class="StoneContainer">
+            <img id="Stoneplayer" class="Stoneimg1" src="D:/blood community/stone.png">
+            <div class="label" id="playerNa">YOU</div>
+        </div>
+        <div class="StoneContainer">
+            <img id="Stonecomp" class="Stoneimg" src="D:/blood community/stone.png">
+            <div class="label">COMPUTER</div>
+        </div>
+    </div>
+    <br>
+
+    <center>
+        <button id="Stone" onclick="stone(event)">Stone</button>
+        <button id="Paper" onclick="stone(event)">Paper</button>
+        <button id="Scissor" onclick="stone(event)">Scissor</button>
+        <h3 id="wonorloss">hello</h3>
+    </center>
+    <script>
+        var wonorloss = document.getElementById("wonorloss");
+        var playerNameInput = document.getElementById("playerName");
+        var popup = document.getElementById("popup");
+
+        // Show popup on page load
+        window.onload = function () {
+            popup.style.display = "block";
+        };
+
+        // Function to start the game
+        function startGame() {
+            var playerName = playerNameInput.value;
+            document.getElementById("playerNa").textContent = playerName;
+            if (playerName.trim() === "") {
+                alert("Please enter your name.");
+                return;
+            }
+            popup.style.display = "none";
+        }
+        var wonorloss=document.getElementById("wonorloss");
+        var random=0;
+        var wonorloss = document.getElementById("wonorloss");
+        var playerNameInput = document.getElementById("playerName");
+        var popup = document.getElementById("popup");
+
+        // Show popup on page load
+        window.onload = function () {
+            popup.style.display = "block";
+        };
+
+        // Function to start the game
+        function startGame() {
+            var playerName = playerNameInput.value;
+            if (playerName.trim() === "") {
+                alert("Please enter your name.");
+                return;
+            }
+            popup.style.display = "none";
+        }
+
+        function stoneimgP()
+        {
+            var x = document.getElementById('Stonecomp');
+            x.src = 'D:/blood community/stone.png';
+        }
+        function paperimgP()
+        {
+            var x = document.getElementById('Stonecomp');
+            x.src = 'D:/blood community/paper.png';
+        }
+        function ScissorimgP()
+        {
+            var x = document.getElementById('Stonecomp');
+            x.src = 'D:/blood community/scisors.png';
+        }
+        function stoneimgC()
+        {
+            var x = document.getElementById('Stoneplayer');
+            x.src = 'D:/blood community/stone.png';
+        }
+        function paperimgC()
+        {
+            var x = document.getElementById('Stoneplayer');
+            x.src = 'D:/blood community/paper.png';
+        }
+        function ScissorimgC()
+        {
+            var x = document.getElementById('Stoneplayer');
+            x.src = 'D:/blood community/scisors.png';
+        }
+        function stone(event) {
+
+            var score=10;
+            var b=event.target.textContent;
+            if(b=="Stone")
+            {
+                random=0;
+                stoneimgP();
+            }
+            if(b=="Paper")
+            {
+                random=1;
+                paperimgP();
+            }
+            if(b=="Scissor")
+            {
+                random=2;
+                ScissorimgP();
+            }
+            var computerchoice=computer();
+            if(computerchoice==0)
+            {
+                stoneimgC();
+            }
+            if(computerchoice==1)
+            {
+                paperimgC();
+            }
+            if(computerchoice==2)
+            {
+                ScissorimgC();
+            }
+            if(computerchoice==random)
+            {
+               wonorloss.textContent="Match Draw!";
+            }
+            else if(random==0 && computerchoice==1)
+            {
+                wonorloss.textContent="lost!";
+            }
+            else if(random==0 && computerchoice==2)
+            {
+                wonorloss.textContent="you Won!";
+            }
+            else if(random==1 && computerchoice==0)
+            {
+                wonorloss.textContent="You Won!";
+            }
+            else if(random==1 && computerchoice==2)
+            {
+                wonorloss.textContent="lost!";
+            }
+            else if(random==2 && computerchoice==1)
+            {
+                wonorloss.textContent="you won!!";
+            }
+            else if(random==2 && computerchoice==0)
+            {
+                wonorloss.textContent="lost!";
+            }
+        }
+        function computer()
+        {
+            var m=Math.random();
+            var m1=Math.floor(m*10);
+            var com=m1%3;
+            return com;
+        }
+    </script>
+</body>
+</html>
