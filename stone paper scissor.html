@@ -99,8 +99,6 @@
         window.onload = function () {
             popup.style.display = "block";
         };
-
-        // Function to start the game
         function startGame() {
             var playerName = playerNameInput.value;
             document.getElementById("playerNa").textContent = playerName;
@@ -116,12 +114,9 @@
         var playerNameInput = document.getElementById("playerName");
         var popup = document.getElementById("popup");
 
-        // Show popup on page load
         window.onload = function () {
             popup.style.display = "block";
         };
-
-        // Function to start the game
         function startGame() {
             var playerName = playerNameInput.value;
             if (playerName.trim() === "") {
